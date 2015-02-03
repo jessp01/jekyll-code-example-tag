@@ -1,4 +1,4 @@
-Gem::Specification do |s|
+Gem::Specification.new do |s|
   s.name        = 'jekyll-code-example-tag'
   s.version     = '0.0.1'
   s.date        = '2015-02-03'
@@ -12,7 +12,7 @@ Gem::Specification do |s|
                      kept in seperate files. Another tag allows you to combine
                      all code examples that are on a page.}
 
-  s.add_dependency 'jekyll'
+  s.add_runtime_dependency 'jekyll'
 
   s.files        = `git ls-files`.split($\)
   s.require_paths = ['lib']
