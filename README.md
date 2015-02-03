@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/jekyll-code-example-tag.svg)](http://badge.fury.io/rb/jekyll-code-example-tag)
+
 jekyll-code-example-tag
 =======================
 
