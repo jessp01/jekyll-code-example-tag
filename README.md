@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/govdelivery/jekyll-code-example-tag.svg?branch=master)](https://travis-ci.org/govdelivery/jekyll-code-example-tag)
 [![Gem Version](https://badge.fury.io/rb/jekyll-code-example-tag.svg)](http://badge.fury.io/rb/jekyll-code-example-tag)
 
 jekyll-code-example-tag
