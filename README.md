@@ -22,6 +22,14 @@ Or install it manually:
 
     gem install jekyll-code-example-tag
 
+Then, include a script tag in your page or layout to fetch the required
+javascript:
+
+    <script type="text/javascript" src="/js/jekyll-code-example-buttons.js"></script>
+
+You may also overwrite the provided javascript by writing a `jekyll-code-example-buttons.js`
+file in the `/js/` directory of your Jekyll project.
+
 ## Usage
 
 ### code_example

@@ -97,6 +97,34 @@ EOF
         output = Jekyll::CodeExampleTags::wrap_examples_div(output)
       end
     end
+
+    class CodeExamplesJsFile < Jekyll::StaticFile
+      def write(dest)
+
+        if File.file?(File.join(FileUtils.pwd, @dir, @name))
+          in_path = File.join(FileUtils.pwd, @dir, @name)
+        else
+          in_path = File.join(File.dirname(__FILE__), @dir, @name)
+        end
+        dest_path = File.join(dest, @dir, @name)
+
+        FileUtils.mkdir_p(File.dirname(dest_path))
+        content = File.read(in_path)
+        File.open(dest_path, 'w') do |f|
+          f.write(content)
+        end
+      end
+    end
+
+    class CodeExamplesJsGenerator < Jekyll::Generator
+      safe true
+    
+      def generate(site)
+        name = 'jekyll-code-example-buttons.js'
+        destination = '/js/'
+        site.static_files << CodeExamplesJsFile.new(site, site.source, destination, name)
+      end
+    end
   end
 end
 
