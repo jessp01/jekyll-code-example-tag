@@ -45,7 +45,7 @@ EOF
     def self.example_markup(language, content)
       <<EOF
           <div class="highlight example #{language}">
-            <pre><code class="language-#{language}" data-lang="#{language}">#{content}</code></pre>
+            <pre><code class="language #{language}" data-lang="#{language}">#{content}</code></pre>
           </div>
 EOF
 

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'jekyll-code-example-tag'
-  s.version     = '0.0.3'
+  s.version     = '0.0.4'
   s.date        = '2015-02-03'
   s.authors     = ['GovDelivery']
   s.email       = 'support@govdelivery.com'
