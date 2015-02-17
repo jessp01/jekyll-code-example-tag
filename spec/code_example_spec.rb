@@ -17,11 +17,6 @@ describe 'code_example', fakefs: true do
 
   before(:all) do
     FakeFS.activate!
-
-    FileUtils.mkdir_p('code_examples/ruby')
-    FileUtils.mkdir_p('code_examples/python')
-    File.open('code_examples/ruby/hello_world', 'w') { |f| f << 'puts "Hello World"'}
-    File.open('code_examples/python/hello_world', 'w') { |f| f << 'print "Hello World"'}  
   end
 
   after(:all) do
@@ -29,6 +24,11 @@ describe 'code_example', fakefs: true do
   end
 
   it 'can be used' do
+    FileUtils.mkdir_p('code_examples/ruby')
+    FileUtils.mkdir_p('code_examples/python')
+    File.open('code_examples/ruby/hello_world', 'w') { |f| f << 'puts "Hello World"'}
+    File.open('code_examples/python/hello_world', 'w') { |f| f << 'print "Hello World"'}  
+
     t = Liquid::Template.parse(page)
     o = t.render!({'site' => {}})
     o_obj = Nokogiri::XML.parse(o)
@@ -43,6 +43,20 @@ describe 'code_example', fakefs: true do
 
     t = Liquid::Template.parse(page)
     o = t.render!({'site' => {'code_example_dir' => 'examples'}})
+    o_obj = Nokogiri::XML.parse(o)
+    check_code_example_conditions(o_obj)
+  end
+
+  it 'allows for dividing examples via context' do
+    FileUtils.mkdir_p('code_examples/v1/ruby')
+    FileUtils.mkdir_p('code_examples/v1/python')
+    File.open('code_examples/v1/ruby/hello_world', 'w') { |f| f << 'puts "Hello World"'}
+    File.open('code_examples/v1/python/hello_world', 'w') { |f| f << 'print "Hello World"'}  
+
+    page = "{% code_example v1/hello_world %}"
+
+    t = Liquid::Template.parse(page)
+    o = t.render!({'site' => {}})
     o_obj = Nokogiri::XML.parse(o)
     check_code_example_conditions(o_obj)
   end

@@ -124,6 +124,43 @@ the resulting markup will include just the Ruby example:
       </div>
     </div>
 
+The *code_example* tag can also support examples organized in sub directories.
+For example, say you would like to organize some of your code examples by
+product and API version:
+
+    .
+    |-code_examples
+      |-productA
+        |-api_v1
+          |-ruby
+            |-widget_maker
+          |-python
+            |-widget_maker
+        |-api_v2
+          |-ruby
+            |-widget_maker
+          |-python
+            |-widget_maker
+      |-productB
+        |-api_v1
+          |-ruby
+            |-authenticating
+          |-python
+            |-authenticating
+      |-ruby
+        |-hello_world
+      |-python
+        |-hello_world
+
+With the above directory structure, including any of the following calls to
+code_example will result in including only the relevant code examples from
+the referred to directory:
+
+    {% code_example productA/api_v1/widget_maker %}
+    {% code_example productA/api_v2/widget_maker %}
+    {% code_example productB/api_v1/authenticating %}
+    {% code_example hello_world %}
+
 ### all_page_code_examples
 
 If you have included a few code examples on a page via the *code_example* tag,

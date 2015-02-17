@@ -6,9 +6,9 @@ module Jekyll
     end
 
     # Returns a hash of available code examples (per language) for the provided example name
-    def self.code_examples(example_name, site)
+    def self.code_examples(context_path, example_name, site)
       # Collect all relevant files
-      examples_root = code_example_dir(site)
+      examples_root = File.join(code_example_dir(site), context_path)
 
       code_folders = Dir.entries(examples_root).select do |entry|
         File.directory? File.join(examples_root, entry) and !(entry =='.' || entry == '..')
@@ -55,15 +55,29 @@ EOF
       "<div class='code-examples'>#{content}</div>"
     end
 
+    def self.get_example_name_and_context(example_string)
+      example_string.strip! 
+      if example_string.include?('/')
+        example_arr = example_string.split('/')
+        example_name = example_arr.delete_at(-1)
+        context_path = example_arr.join(File::SEPARATOR) + File::SEPARATOR 
+      else
+        context_path = ''
+        example_name = example_string
+      end
+
+      return context_path, example_name
+    end
+
     class CodeExampleTag < Liquid::Tag
-      def initialize(tag_name, example_name, tokens)
-          @example_name = example_name.strip
-          super
+      def initialize(tag_name, example_string, tokens)
+        @context_path, @example_name = Jekyll::CodeExampleTags::get_example_name_and_context(example_string) 
+        super
       end
 
       def render(context)
 
-        examples = Jekyll::CodeExampleTags::code_examples(@example_name, context['site'])
+        examples = Jekyll::CodeExampleTags::code_examples(@context_path, @example_name, context['site'])
 
         # Build the code example elements
         output = Jekyll::CodeExampleTags::buttons_markup(examples)
@@ -80,7 +94,8 @@ EOF
       def render(context)
         examples = {}
         context['page']['content'].scan(/\{%\s*code_example (\S+)\s*%\}/) do |name|
-          more_examples = Jekyll::CodeExampleTags::code_examples(name[0], context['site'])
+          context_path, example_name = Jekyll::CodeExampleTags::get_example_name_and_context(name[0])
+          more_examples = Jekyll::CodeExampleTags::code_examples(context_path, example_name, context['site'])
           examples.merge!(more_examples){|key, pre_example, new_example| "#{pre_example}\n#{new_example}"}
         end
 
