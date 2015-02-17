@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-code-example-tag (0.0.4)
+    jekyll-code-example-tag (0.0.5)
       jekyll
 
 GEM
