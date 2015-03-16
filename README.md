@@ -32,6 +32,20 @@ file in the `/js/` directory of your Jekyll project.
 
 ## Usage
 
+### Configure CSS Classes
+
+Via your site's _config.yml, you can define what CSS class or classes the 
+example buttons and button containers will have. For example:
+
+    code_example_buttons_class: 'the_buttons'
+    code_example_button_class: 'a_button'
+
+will cause each button to have the class `a_button`, and buttons will be inside
+a div with the class `the_buttons`. 
+
+`code_example_buttons_class` defaults to 'buttons', and 
+`code_example_button_class` defaults to 'button'.
+
 ### code_example
 
 First, select a folder to place your code examples in. By default, the top

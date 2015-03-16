@@ -1,3 +1,5 @@
+require_relative 'js/jekyll-code-example-buttons.js.rb'
+
 module Jekyll
   module CodeExampleTags
 
@@ -28,13 +30,16 @@ module Jekyll
       examples
     end
 
-    def self.buttons_markup(examples)
+    def self.buttons_markup(examples, context)
+      site = context['site']
+      buttons_class = site['code_example_buttons_class'] ? site['code_example_buttons_class'] : 'buttons'
+      button_class = site['code_example_button_class'] ? site['code_example_button_class'] : 'button'
       menu_items = ""
       examples.each_key do |lang|
-        menu_items << "<li><a href='#' class='button' target='#{lang}'>#{lang.capitalize}</a></li>"
+        menu_items << "<li><a href='#' class='#{button_class}' target='#{lang}'>#{lang.capitalize}</a></li>"
       end
       <<EOF
-            <div class="buttons examples">
+            <div class="#{buttons_class} examples">
               <ul>
                 #{menu_items}
               </ul>
@@ -80,7 +85,7 @@ EOF
         examples = Jekyll::CodeExampleTags::code_examples(@context_path, @example_name, context['site'])
 
         # Build the code example elements
-        output = Jekyll::CodeExampleTags::buttons_markup(examples)
+        output = Jekyll::CodeExampleTags::buttons_markup(examples, context)
         examples.each do |lang, path|
           example_content = File.read(path)
           output << Jekyll::CodeExampleTags::example_markup(lang, example_content)
@@ -100,7 +105,7 @@ EOF
         end
 
         # Build the code example elements
-        output = Jekyll::CodeExampleTags::buttons_markup(examples)
+        output = Jekyll::CodeExampleTags::buttons_markup(examples, context)
         examples.each do |lang, paths|
           example_content = ""
           for path in paths.split("\n")
@@ -116,15 +121,10 @@ EOF
     class CodeExamplesJsFile < Jekyll::StaticFile
       def write(dest)
 
-        if File.file?(File.join(FileUtils.pwd, @dir, @name))
-          in_path = File.join(FileUtils.pwd, @dir, @name)
-        else
-          in_path = File.join(File.dirname(__FILE__), @dir, @name)
-        end
         dest_path = File.join(dest, @dir, @name)
 
         FileUtils.mkdir_p(File.dirname(dest_path))
-        content = File.read(in_path)
+        content = code_example_buttons_js(@site)
         File.open(dest_path, 'w') do |f|
           f.write(content)
         end
