@@ -3,6 +3,13 @@ CHANGELOG
 
 This project does *not* adhere to Semantic Versioning
 
+## 0.0.7 - 2015-03-18
+
+### Fixed
+
+- HTML escaping code examples, so the brower renders HTML/XMl as HTML/XML
+	characters
+
 ## 0.0.6 - 2015-03-16
 
 ### Added

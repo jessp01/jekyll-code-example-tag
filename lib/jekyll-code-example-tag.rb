@@ -1,4 +1,5 @@
 require_relative 'js/jekyll-code-example-buttons.js.rb'
+require 'htmlentities'
 
 module Jekyll
   module CodeExampleTags
@@ -48,9 +49,10 @@ EOF
     end
 
     def self.example_markup(language, content)
+      he = HTMLEntities.new
       <<EOF
           <div class="highlight example #{language}">
-            <pre><code class="language #{language}" data-lang="#{language}">#{content}</code></pre>
+            <pre><code class="language #{language}" data-lang="#{language}">#{he.encode(content)}</code></pre>
           </div>
 EOF
 

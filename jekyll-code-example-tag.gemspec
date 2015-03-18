@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'jekyll-code-example-tag'
-  s.version     = '0.0.6'
+  s.version     = '0.0.7'
   s.date        = '2015-02-03'
   s.authors     = ['GovDelivery']
   s.email       = 'support@govdelivery.com'
@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
                      all code examples that are on a page.}
 
   s.add_runtime_dependency 'jekyll'
+  s.add_runtime_dependency 'htmlentities'
 
   s.files        = `git ls-files`.split($\)
   s.require_paths = ['lib']

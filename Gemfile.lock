@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     jekyll-code-example-tag (0.0.6)
+      htmlentities
       jekyll
 
 GEM
@@ -16,14 +17,15 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.0)
+    coffee-script-source (1.9.1)
     colorator (0.1)
     diff-lcs (1.2.5)
-    execjs (2.3.0)
+    execjs (2.4.0)
     fakefs (0.6.5)
     fast-stemmer (1.0.2)
-    ffi (1.9.6)
+    ffi (1.9.8)
     hitimes (1.2.2)
+    htmlentities (4.3.3)
     jekyll (2.5.3)
       classifier-reborn (~> 2.0)
       colorator (~> 0.1)
@@ -47,9 +49,9 @@ GEM
       sass (~> 3.2)
     jekyll-watch (1.2.1)
       listen (~> 2.7)
-    kramdown (1.5.0)
+    kramdown (1.6.0)
     liquid (2.6.2)
-    listen (2.8.5)
+    listen (2.9.0)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -60,7 +62,7 @@ GEM
       mini_portile (~> 0.6.0)
     parslet (1.5.0)
       blankslate (~> 2.0)
-    posix-spawn (0.3.9)
+    posix-spawn (0.3.10)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -86,7 +88,7 @@ GEM
       rspec-support (~> 3.2.0)
     rspec-support (3.2.0)
     safe_yaml (1.0.4)
-    sass (3.4.11)
+    sass (3.4.13)
     slop (3.6.0)
     timers (4.0.1)
       hitimes
