@@ -32,14 +32,14 @@ module Jekyll
     end
 
     def self.buttons_markup(examples, context)
-				site = context['site']
-				buttons_class = site['code_example_buttons_class'] ? site['code_example_buttons_class'] : 'buttons'
-				button_class = site['code_example_button_class'] ? site['code_example_button_class'] : 'button'
-				list_class = site['code_example_list_class'] ? site['code_example_list_class'] : 'code-tab'
-				menu_items = ""
-				examples.each_key do |lang|
-        	menu_items << "<li class='#{list_class}'><a href='#' class='#{button_class}' target='#{lang}'>#{lang.capitalize}</a></li>"
-      	end
+      site = context['site']
+      buttons_class = site['code_example_buttons_class'] ? site['code_example_buttons_class'] : 'buttons'
+      button_class = site['code_example_button_class'] ? site['code_example_button_class'] : 'button'
+      list_class = site['code_example_list_class'] ? site['code_example_list_class'] : 'code-tab'
+      menu_items = ""
+      examples.each_key do |lang|
+	    menu_items << "<li class='#{list_class}'><a href='#' class='#{button_class}' target='#{lang}'>#{lang.capitalize}</a></li>"
+      end
       <<EOF
             <div class="#{buttons_class} examples">
               <ul class="#{list_class}">
