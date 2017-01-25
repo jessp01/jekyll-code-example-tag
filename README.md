@@ -48,7 +48,9 @@ a div with the class `the_buttons`.
 
 Same is true for ```code_example_list_class``` which controls the class used for the ```<li>``` and ```<ul>``` tags.
 The default class is 'code-tab' which can be changed by setting:
-    code_example_list_class: my-list-class
+```
+code_example_list_class: my-list-class
+```
 in _config.yml.
 
 ### code_example
