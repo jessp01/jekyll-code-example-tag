@@ -5,7 +5,7 @@ gemspec
 
 group :test do
   gem "fakefs", require: "fakefs/safe"
-  gem 'nokogiri'
+  gem 'nokogiri', '>= 1.13.6'
   gem 'pry'
   gem 'rspec'
 end
